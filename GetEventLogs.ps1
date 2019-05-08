@@ -17,8 +17,8 @@ if($exists -ne $true)
 
 Remove-Item -Path "$logpath\*";
 
-Get-Eventlog -ComputerName $server -LogName System -After $StartDate | Export-CSV -Path "$logpath\$server`_SystemLog.csv";
-Get-Eventlog -ComputerName $server -LogName Application -After $StartDate | Export-CSV -Path "$logpath\$server`_AppLog.csv";
-Get-Eventlog -ComputerName $server -LogName Security -After $StartDate | Export-CSV -Path "$logpath\$server`_SecLog.csv";
+Get-Eventlog -ComputerName $server -LogName System -After $StartDate | Export-CSV -Path "$logpath\$server`_$formatdate`_SystemLog.csv";
+Get-Eventlog -ComputerName $server -LogName Application -After $StartDate | Export-CSV -Path "$server`_$formatdate`_AppLog.csv";
+Get-Eventlog -ComputerName $server -LogName Security -After $StartDate | Export-CSV -Path "$server`_$formatdate`_SecLog.csv";
 
 Compress-Archive -Path "$logpath\*$server*" -CompressionLevel Fastest -DestinationPath "$logpath\logfiles";
