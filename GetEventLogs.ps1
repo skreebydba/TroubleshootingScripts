@@ -24,8 +24,8 @@ Remove-Item -Path "$logpath\*";
 
 <# Get the system, application, and security log records for the last hour from the server #>
 Get-Eventlog -ComputerName $server -LogName System -After $StartDate | Export-CSV -Path "$logpath\$server`_$formatdate`_SystemLog.csv";
-Get-Eventlog -ComputerName $server -LogName Application -After $StartDate | Export-CSV -Path "$server`_$formatdate`_AppLog.csv";
-Get-Eventlog -ComputerName $server -LogName Security -After $StartDate | Export-CSV -Path "$server`_$formatdate`_SecLog.csv";
+Get-Eventlog -ComputerName $server -LogName Application -After $StartDate | Export-CSV -Path "$logpath\$server`_$formatdate`_AppLog.csv";
+Get-Eventlog -ComputerName $server -LogName Security -After $StartDate | Export-CSV -Path "$logpath\$server`_$formatdate`_SecLog.csv";
 
 <# Compress log files into a .zip file #>
 Compress-Archive -Path "$logpath\*$server*" -CompressionLevel Fastest -DestinationPath "$logpath\logfiles";
