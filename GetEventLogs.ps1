@@ -1,6 +1,10 @@
-$server = "INVMARIASQLT01";
+<# Declare the server to capture logs from #>
+$server = "DESKTOP-1KGJIH9";
+<# Declare the path to write log files to #>
 $logpath = "C:\temp\logs";
 
+<# Get the current date and set the start time for log collection #>
+$formatdate = Get-Date -Format yyyyMMddHHmmss;
 $date = Get-Date;
 $StartDate = $date.AddHours(-1);
 
